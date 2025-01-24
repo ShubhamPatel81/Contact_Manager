@@ -1,0 +1,4 @@
+timestamp,app_name,duration,cpu_usage
+2024-11-28 14:33:17,hello.py - Contact_manager_web - Visual Studio Code,29.047159910202026,1.2
+2024-11-28 14:33:46,ChatGPT - Google Chrome,20.120217084884644,9.6
+2024-11-28 14:34:06,hello.py - Contact_manager_web - Visual Studio Code,11.114041328430176,8.3
