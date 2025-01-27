@@ -22,5 +22,7 @@ public interface UserService {
     boolean isUserExistByUserEmail(String emailId);
 
     List<User> getAllUsers(); // Corrected return type
+
+    User getUserByEmail(String email);
 }
 

@@ -7,6 +7,13 @@
   </head>
   <body>
     <h1 class="text-red-800 w-12">This is user profile page</h1>
+    <h1 th:text="${loggedInUser.name}"></h1>
+    <h1 th:text="${loggedInUser.email}"></h1>
+<!--    <h1 th:text="${loggedInUser.name}"></h1>-->
+<!--    <h1 th:text="${loggedInUser.name}"></h1>-->
+      <div th:if="${loggedInUser}">
+        <h1> USER LOGGED IN SUCCESSFULLY </h1>
+      </div>
     <a th:href="@{'/logout'}"></a>
   </body>
 </html>
