@@ -1,19 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html
+  lang="en"
+  th:replace="~{fragment:: parent(~{::.container}, ~{::title},~{script})}"
+>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>user profile</title>
+    <title th:text="${loggedInUser.name}">Profile Page</title>
   </head>
   <body>
-    <h1 class="text-red-800 w-12">This is user profile page</h1>
-    <h1 th:text="${loggedInUser.name}"></h1>
-    <h1 th:text="${loggedInUser.email}"></h1>
-<!--    <h1 th:text="${loggedInUser.name}"></h1>-->
-<!--    <h1 th:text="${loggedInUser.name}"></h1>-->
-      <div th:if="${loggedInUser}">
-        <h1> USER LOGGED IN SUCCESSFULLY </h1>
-      </div>
-    <a th:href="@{'/logout'}"></a>
+    <div class="container bg-red-400">
+      <h1>Welcome to the profile page</h1>
+      <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id voluptate
+        libero praesentium dolorum eveniet hic dicta ut excepturi exercitationem
+        eum nobis quae debitis, cum fuga? Cum expedita mollitia laborum
+        deleniti.
+      </p>
+    </div>
+    <script>
+      console.log("profile page ");
+    </script>
   </body>
 </html>

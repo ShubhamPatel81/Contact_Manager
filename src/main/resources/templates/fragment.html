@@ -30,7 +30,16 @@
     }
   </style>
   <body class="dark:bg-gray-800 bg-gray-100 dark:text-white">
-    <div data-th-replace="navbar::navbar"></div>
+    <!-- Navbar for login user  -->
+    <div th:if="${loggedInUser}">
+      <div th:replace="~{user/userNavbar::user-navbar}"></div>
+    </div>
+
+    <div th:unless="${loggedInUser}">
+      <div th:replace="~{navbar::navbar}"></div>
+    </div>
+
+    <!-- <div data-th-replace="navbar::navbar"></div> -->
 
     <!-- main content  -->
     <div class="p-4 w-full">
