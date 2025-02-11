@@ -33,5 +33,6 @@ public class ContactForm {
     private String linkedInLink;
     private  boolean favourate=false;
 
-    private MultipartFile profileImage;
+    //validate file size and resolution
+    private MultipartFile contactImage;
 }

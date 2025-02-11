@@ -7,9 +7,12 @@ import com.example.Contact_manager_web.helper.Helper;
 import com.example.Contact_manager_web.helper.Message;
 import com.example.Contact_manager_web.helper.MessageType;
 import com.example.Contact_manager_web.service.ContactService;
+import com.example.Contact_manager_web.service.ImageService;
 import com.example.Contact_manager_web.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -23,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/user/contact")
 public class ContactController {
 
+    private Logger logger =  LoggerFactory.getLogger(ContactController.class);
     @Autowired
     private ContactService contactService;
 
@@ -30,6 +34,8 @@ public class ContactController {
         private UserService userService;
     // add contact page
 
+    @Autowired
+    private ImageService imageService;
     @RequestMapping("/add")
     public  String addContact(Model model){
         ContactForm contactForm = new ContactForm();
@@ -53,6 +59,10 @@ public class ContactController {
        // validate the form same as user Registration
        // TODO
         if (bindingResult.hasErrors()){
+
+            //checking the error by printing
+            //bindingResult.getAllErrors().forEach(error->logger.info(error.toString()));
+
             httpSession.setAttribute("message", Message.builder()
                             .content("Contact is Not Added !!!!!")
                             .type(MessageType.red)
@@ -66,7 +76,8 @@ public class ContactController {
 
         // PROCESS THE Contact Picture
 
-
+        logger.info("file information: {}", contactForm.getContactImage().getOriginalFilename());
+        String fileURL =  imageService.uploadImage(contactForm.getContactImage());
 
         contact.setName(contactForm.getName());
         contact.setFavourate(contactForm.isFavourate());
@@ -79,7 +90,7 @@ public class ContactController {
         contact.setWebsiteLink(contactForm.getWebsiteLink());
 
         // set contact picture url
-
+        contact.setPicture(fileURL);
         contactService.saveContact(contact);
 
         System.out.println(
