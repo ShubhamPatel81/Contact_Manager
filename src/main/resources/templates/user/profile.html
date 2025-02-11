@@ -7,14 +7,16 @@
     <title th:text="${loggedInUser.name}">Profile Page</title>
   </head>
   <body>
-    <div class="container bg-red-400">
-      <h1>Welcome to the profile page</h1>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id voluptate
-        libero praesentium dolorum eveniet hic dicta ut excepturi exercitationem
-        eum nobis quae debitis, cum fuga? Cum expedita mollitia laborum
-        deleniti.
-      </p>
+    <div class="container">
+      <div>
+        <!-- sider for login user  -->
+        <!-- if user is loggedIn :then siderbar  -->
+        <div th:if="${loggedInUser}">
+          <div th:replace="~{user/siderbar}"></div>
+        </div>
+
+        <h1>Welcome to Profile page</h1>
+      </div>
     </div>
     <script>
       console.log("profile page ");

@@ -13,12 +13,12 @@ import java.util.List;
 @Entity
 public class Contact {
     @Id
-
     private String id;
     private  String name;
     private String email;
     private  String phoneNumber;
     private String picture;
+    private  String address;
     @Column(length = 1000)
     private  String description;
     private  boolean favourate = false;

@@ -41,7 +41,7 @@ public class SecurityConfig {
     @Bean
     public AuthenticationProvider  authenticationProvider(){
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userDetailsService);
+        authenticationProvider.setUserDetailsService(userDetailsService);       
         authenticationProvider.setPasswordEncoder(passwordEncoder());
         return  authenticationProvider;
     }
@@ -65,7 +65,6 @@ public class SecurityConfig {
                );
        //form login
         httpSecurity.formLogin(formLogin -> {
-
             //
             formLogin.loginPage("/login");
             formLogin.loginProcessingUrl("/authenticate");
@@ -88,7 +87,7 @@ public class SecurityConfig {
 //               });
        });
         httpSecurity.logout(logoutForm->{
-                logoutForm.logoutUrl("/logout");
+                logoutForm.logoutUrl("/do-logout");
                 logoutForm.logoutSuccessUrl("/login?logout=true");
         });
 

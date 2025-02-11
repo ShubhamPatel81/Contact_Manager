@@ -67,8 +67,6 @@ public class PageController {
 //	}
 
 
-
-
 	// SignUp Page
 	@GetMapping("/register")
 	public String register(Model model){

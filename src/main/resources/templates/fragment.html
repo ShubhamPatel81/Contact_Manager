@@ -30,11 +30,13 @@
     }
   </style>
   <body class="dark:bg-gray-800 bg-gray-100 dark:text-white">
-    <!-- Navbar for login user  -->
+    <!-- Navbar for login user  this navbar will used  -->
     <div th:if="${loggedInUser}">
       <div th:replace="~{user/userNavbar::user-navbar}"></div>
     </div>
 
+  
+    <!-- if user not logged in this navbar used  -->
     <div th:unless="${loggedInUser}">
       <div th:replace="~{navbar::navbar}"></div>
     </div>

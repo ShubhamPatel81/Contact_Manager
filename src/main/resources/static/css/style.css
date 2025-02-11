@@ -44,3 +44,10 @@
 .login-with-google-btn :hover {
   background-color: gray;
 }
+#userSiderBar {
+  padding-left: 16rem;
+}
+.container {
+  padding-left: 16rem;
+  /* padding-top: rem; */
+}
