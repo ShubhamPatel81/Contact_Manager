@@ -8,9 +8,7 @@ import java.io.IOException;
 @Service
 public interface ImageService {
 
-    String uploadImage(MultipartFile contactImage) ;
-
-    String getUrlFromPublicId (String publicId);
-
+    String uploadImage(MultipartFile contactImage, String fileName) ;
+    String getUrFormPublicId(String publicId);
 
 }

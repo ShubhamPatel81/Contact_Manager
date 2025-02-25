@@ -4,7 +4,7 @@
   data-th-replace="~{fragment:: parent(~{::.container}, ~{::title},~{script})}"
 >
   <head>
-    <title>Add Contaxct Page</title>
+    <title>Add Contact Page</title>
   </head>
   <body>
     <div class="container">
@@ -60,6 +60,7 @@
                             th:errors="*{name}"
                             class="text-red-600"
                     >
+                    </p>
                   </div>
 
                 </div>
@@ -89,6 +90,7 @@
                             th:errors="*{email}"
                             class="text-red-600"
                     >
+                    </p>
                   </div>
                 </div>
 
@@ -116,6 +118,7 @@
                             th:errors="*{phoneNumber}"
                             class="text-red-600"
                     >
+                    </p>
                       Phone Number is required
                     </p>
                   </div>
@@ -215,11 +218,13 @@
                   >
                   <input
                     class="block w-full mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                    id="small_size"
+                    id="image_file_input"
                     type="file"
                     data-th-field="*{contactImage}"
                   />
+                  <img  class="max-h-52 mx-auto" src="" id="upload_image_preview">
                 </div>
+
                 <!-- checkbox  -->
                 <div class="flex items-center mb-2">
                   <input
@@ -258,8 +263,11 @@
         </div>
       </div>
     </div>
+    <script data-th-src="@{'/js/admin.js'}">
+
+    </script>
     <script>
-      console.log("profile page ");
+      console.log("this is add to contact page");
     </script>
   </body>
 </html>

@@ -1,8 +1,10 @@
 package com.example.Contact_manager_web.controller;
 
 import com.example.Contact_manager_web.Forms.ContactForm;
+import com.example.Contact_manager_web.config.AppConfig;
 import com.example.Contact_manager_web.entities.Contact;
 import com.example.Contact_manager_web.entities.User;
+import com.example.Contact_manager_web.helper.AppConstants;
 import com.example.Contact_manager_web.helper.Helper;
 import com.example.Contact_manager_web.helper.Message;
 import com.example.Contact_manager_web.helper.MessageType;
@@ -11,16 +13,20 @@ import com.example.Contact_manager_web.service.ImageService;
 import com.example.Contact_manager_web.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/user/contact")
@@ -36,6 +42,9 @@ public class ContactController {
 
     @Autowired
     private ImageService imageService;
+
+
+
     @RequestMapping("/add")
     public  String addContact(Model model){
         ContactForm contactForm = new ContactForm();
@@ -52,7 +61,7 @@ public class ContactController {
 
         //process the form data
         String userName = Helper.getEmailOfLoggedInUser(authentication);
-       User user=  userService.getUserByEmail(userName);
+        User user=  userService.getUserByEmail(userName);
 
 
 
@@ -75,9 +84,10 @@ public class ContactController {
         Contact contact = new Contact();
 
         // PROCESS THE Contact Picture
-
         logger.info("file information: {}", contactForm.getContactImage().getOriginalFilename());
-        String fileURL =  imageService.uploadImage(contactForm.getContactImage());
+
+        //String fileName= UUID.randomUUID().toString();
+//        String fileURL =  imageService.uploadImage(contactForm.getContactImage(),fileName);
 
         contact.setName(contactForm.getName());
         contact.setFavourate(contactForm.isFavourate());
@@ -90,7 +100,14 @@ public class ContactController {
         contact.setWebsiteLink(contactForm.getWebsiteLink());
 
         // set contact picture url
-        contact.setPicture(fileURL);
+        if (contactForm.getContactImage() != null && !contactForm.getContactImage().isEmpty()) {
+            String filename = UUID.randomUUID().toString();
+            String fileURL = imageService.uploadImage(contactForm.getContactImage(), filename);
+            contact.setPicture(fileURL);
+            contact.setCloudinaryImagePublicId(filename);
+
+        }
+
         contactService.saveContact(contact);
 
         System.out.println(
@@ -104,10 +121,59 @@ public class ContactController {
                         .type(MessageType.blue)
                         .build()
                 );
-
-//set the message for display
+        //set the message for display
         return "redirect:/user/contact/add";
 
     }
+
+
+
+    // view contact with pagination and sorting
+    @GetMapping()
+    public String viewContact(
+            @RequestParam(value = "page",defaultValue = "0") int page,
+            @RequestParam(value = "size", defaultValue = "10") int size,
+            @RequestParam(value = "sortBy", defaultValue = "name") String sortBy,
+            @RequestParam(value = "direction", defaultValue = "asc") String direction,
+            Model model, Authentication authentication){
+
+      String userName= Helper.getEmailOfLoggedInUser(authentication);
+      User user= userService.getUserByEmail(userName);
+      Page<Contact> pageContactList= contactService.getByUser(user,page,size, sortBy,direction);
+
+         model.addAttribute("contact", pageContactList );
+            model.addAttribute("pageSize", AppConstants.PAGE_SIZE);
+        return "user/contacts";
+    }
+
+    // search handler
+    @GetMapping("/search")
+    public String searchHandler(@RequestParam("field") String field,
+                                @RequestParam("keyword") String value,
+                                @RequestParam(value = "size", defaultValue = "10") int size,
+                                @RequestParam(value = "page", defaultValue = "0") int page,
+                                @RequestParam(value = "sortBy", defaultValue = "name") String sortBy,
+                                @RequestParam(value = "direction", defaultValue = "asc") String direction,
+                                Model model, ModelAttribute contactSearchForm) {
+
+        Page<Contact> pageContact = null;
+
+        if (field.equalsIgnoreCase("byName")) {
+            pageContact = contactService.searchByName(value, size, page, sortBy, direction);
+        } else if (field.equalsIgnoreCase("byEmail")) {
+            pageContact = contactService.searchByEmail(value, size, page, sortBy, direction);
+        } else if (field.equalsIgnoreCase("byPhoneNumber")) {
+            pageContact = contactService.searchByPhoneNumber(value, size, page, sortBy, direction);
+        }
+
+        model.addAttribute("contactSearchForm", contactSearchForm);
+        model.addAttribute("pageContact", pageContact);
+        model.addAttribute("pageSize", AppConstants.PAGE_SIZE);
+        model.addAttribute("loggedInUser", true);
+        return "user/search";
+    }
+
+
+
 
 }

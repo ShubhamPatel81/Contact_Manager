@@ -1,6 +1,9 @@
 package com.example.Contact_manager_web.service;
 
 import com.example.Contact_manager_web.entities.Contact;
+import com.example.Contact_manager_web.entities.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,8 +27,15 @@ public interface ContactService
     void delete(String id);
 
     //search Contact
-    List<Contact> search(String name , String email, String phoneNumber);
+    Page<Contact> searchByName(String name, int size, int page, String sortBy, String order);
+    Page<Contact> searchByEmail(String email, int size, int page, String sortBy, String order);
+    Page<Contact> searchByPhoneNumber(String phoneNumber, int size, int page, String sortBy, String order);
 
     //get Contact by userid
     List<Contact> getByUserId(String userId);
+
+    Page<Contact> getByUser(User user, int page, int size, String sortBy, String direction);
+
+
+
 }
