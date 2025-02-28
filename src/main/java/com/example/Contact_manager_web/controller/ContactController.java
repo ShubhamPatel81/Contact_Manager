@@ -151,7 +151,7 @@ public class ContactController {
     // search handler
     @GetMapping("/search")
     public String searchHandler(@ModelAttribute ContactSearchForm contactSearchForm,
-                                @RequestParam(value = "size",required = false, defaultValue = 9+"") Integer size,
+                                @RequestParam(value = "size",required = false, defaultValue = "10") Integer size,
                                 @RequestParam(value = "page",required = false, defaultValue = "0")Integer page,
                                 @RequestParam(value = "sortBy",required = false, defaultValue = "name") String sortBy,
                                 @RequestParam(value = "direction",required = false, defaultValue = "asc") String direction,
