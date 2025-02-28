@@ -1,6 +1,8 @@
 package com.example.Contact_manager_web.controller;
 
 import com.example.Contact_manager_web.Forms.ContactForm;
+//import com.example.Contact_manager_web.Forms.ContactSearchForm;
+import com.example.Contact_manager_web.Forms.ContactSearchForm;
 import com.example.Contact_manager_web.config.AppConfig;
 import com.example.Contact_manager_web.entities.Contact;
 import com.example.Contact_manager_web.entities.User;
@@ -148,28 +150,34 @@ public class ContactController {
 
     // search handler
     @GetMapping("/search")
-    public String searchHandler(@RequestParam("field") String field,
-                                @RequestParam("keyword") String value,
-                                @RequestParam(value = "size", defaultValue = "10") int size,
-                                @RequestParam(value = "page", defaultValue = "0") int page,
-                                @RequestParam(value = "sortBy", defaultValue = "name") String sortBy,
-                                @RequestParam(value = "direction", defaultValue = "asc") String direction,
-                                Model model, ModelAttribute contactSearchForm) {
+    public String searchHandler(@ModelAttribute ContactSearchForm contactSearchForm,
+                                @RequestParam(value = "size",required = false, defaultValue = 9+"") Integer size,
+                                @RequestParam(value = "page",required = false, defaultValue = "0")Integer page,
+                                @RequestParam(value = "sortBy",required = false, defaultValue = "name") String sortBy,
+                                @RequestParam(value = "direction",required = false, defaultValue = "asc") String direction,
+                                Model model,
+                                Authentication authentication) {
+        if (size == null){
+            size =10;
+            System.out.println("Pointer came here up to '/search' router and size ");
+        }
 
         Page<Contact> pageContact = null;
 
-        if (field.equalsIgnoreCase("byName")) {
-            pageContact = contactService.searchByName(value, size, page, sortBy, direction);
-        } else if (field.equalsIgnoreCase("byEmail")) {
-            pageContact = contactService.searchByEmail(value, size, page, sortBy, direction);
-        } else if (field.equalsIgnoreCase("byPhoneNumber")) {
-            pageContact = contactService.searchByPhoneNumber(value, size, page, sortBy, direction);
+        var user= userService.getUserByEmail(Helper.getEmailOfLoggedInUser(authentication));
+
+        if (contactSearchForm.getField().equalsIgnoreCase("byName")) {
+            pageContact = contactService.searchByName(contactSearchForm.getKeyword(), size, page, sortBy, direction,user);
+        } else if (contactSearchForm.getField().equalsIgnoreCase("byEmail")) {
+            pageContact = contactService.searchByEmail(contactSearchForm.getKeyword(), size, page, sortBy, direction,user);
+        } else if (contactSearchForm.getField().equalsIgnoreCase("byPhoneNumber")) {
+            pageContact = contactService.searchByPhoneNumber(contactSearchForm.getKeyword(), size, page, sortBy, direction,user);
         }
 
-        model.addAttribute("contactSearchForm", contactSearchForm);
-        model.addAttribute("pageContact", pageContact);
-        model.addAttribute("pageSize", AppConstants.PAGE_SIZE);
-        model.addAttribute("loggedInUser", true);
+//        model.addAttribute("contactSearchForm", contactSearchForm);
+        model.addAttribute("contact", pageContact);
+//        model.addAttribute("pageSize", AppConstants.PAGE_SIZE);
+//        model.addAttribute("loggedInUser", true);
         return "user/search";
     }
 
