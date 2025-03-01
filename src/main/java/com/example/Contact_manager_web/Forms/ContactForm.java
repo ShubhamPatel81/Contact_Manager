@@ -34,5 +34,5 @@ public class ContactForm {
     private  boolean favourate=false;
 
     //validate file size and resolution
-    private MultipartFile contactImage;
+    private MultipartFile picture;
 }

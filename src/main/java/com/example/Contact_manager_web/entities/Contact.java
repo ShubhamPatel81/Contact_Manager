@@ -2,6 +2,7 @@ package com.example.Contact_manager_web.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import net.minidev.json.annotate.JsonIgnore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,7 @@ public class Contact {
 //    private List<SocialLink> socialLinks = new ArrayList<>()
 
     @ManyToOne
+    @JsonIgnore
     private User user;
 
     @OneToMany(mappedBy = "contact", cascade = CascadeType.ALL, fetch =FetchType.EAGER )

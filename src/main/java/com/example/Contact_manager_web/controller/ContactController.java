@@ -86,7 +86,7 @@ public class ContactController {
         Contact contact = new Contact();
 
         // PROCESS THE Contact Picture
-        logger.info("file information: {}", contactForm.getContactImage().getOriginalFilename());
+        logger.info("file information: {}", contactForm.getPicture().getOriginalFilename());
 
         //String fileName= UUID.randomUUID().toString();
 //        String fileURL =  imageService.uploadImage(contactForm.getContactImage(),fileName);
@@ -102,9 +102,9 @@ public class ContactController {
         contact.setWebsiteLink(contactForm.getWebsiteLink());
 
         // set contact picture url
-        if (contactForm.getContactImage() != null && !contactForm.getContactImage().isEmpty()) {
+        if (contactForm.getPicture() != null && !contactForm.getPicture().isEmpty()) {
             String filename = UUID.randomUUID().toString();
-            String fileURL = imageService.uploadImage(contactForm.getContactImage(), filename);
+            String fileURL = imageService.uploadImage(contactForm.getPicture(), filename);
             contact.setPicture(fileURL);
             contact.setCloudinaryImagePublicId(filename);
 
@@ -134,7 +134,7 @@ public class ContactController {
     @GetMapping()
     public String viewContact(
             @RequestParam(value = "page",defaultValue = "0") int page,
-            @RequestParam(value = "size", defaultValue = "10") int size,
+            @RequestParam(value = "size", defaultValue = AppConstants.PAGE_SIZE+"") int size,
             @RequestParam(value = "sortBy", defaultValue = "name") String sortBy,
             @RequestParam(value = "direction", defaultValue = "asc") String direction,
             Model model, Authentication authentication){
@@ -148,10 +148,11 @@ public class ContactController {
         return "user/contacts";
     }
 
+
     // search handler
     @GetMapping("/search")
     public String searchHandler(@ModelAttribute ContactSearchForm contactSearchForm,
-                                @RequestParam(value = "size",required = false, defaultValue = "10") Integer size,
+                                @RequestParam(value = "size",required = false, defaultValue = AppConstants.PAGE_SIZE+"") Integer size,
                                 @RequestParam(value = "page",required = false, defaultValue = "0")Integer page,
                                 @RequestParam(value = "sortBy",required = false, defaultValue = "name") String sortBy,
                                 @RequestParam(value = "direction",required = false, defaultValue = "asc") String direction,
@@ -174,14 +175,10 @@ public class ContactController {
             pageContact = contactService.searchByPhoneNumber(contactSearchForm.getKeyword(), size, page, sortBy, direction,user);
         }
 
-//        model.addAttribute("contactSearchForm", contactSearchForm);
+       model.addAttribute("contactSearchForm", contactSearchForm);
         model.addAttribute("contact", pageContact);
-//        model.addAttribute("pageSize", AppConstants.PAGE_SIZE);
+        model.addAttribute("pageSize", AppConstants.PAGE_SIZE);
 //        model.addAttribute("loggedInUser", true);
         return "user/search";
     }
-
-
-
-
 }
