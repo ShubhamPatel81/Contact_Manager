@@ -5,5 +5,5 @@ public class AppConstants {
 
     public static final String ROLE_USER = "ROLE_USER";
 
-    public static final int PAGE_SIZE =3;
+    public static final int PAGE_SIZE =12;
 }

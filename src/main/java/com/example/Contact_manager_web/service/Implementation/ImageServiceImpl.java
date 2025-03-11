@@ -14,8 +14,6 @@ import java.util.UUID;
 
 @Service
 public class ImageServiceImpl implements ImageService {
-
-
     @Autowired
     private AppConfig appdata;
     @Autowired
@@ -46,7 +44,6 @@ public class ImageServiceImpl implements ImageService {
 
         return null;
     }
-
     @Override
     public String getUrFormPublicId(String publicId) {
         return cloudinary
@@ -59,6 +56,4 @@ public class ImageServiceImpl implements ImageService {
                 )
                 .generate(publicId);
     }
-
-
 }

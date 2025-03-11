@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html
   lang="en"
-  th:replace="~{fragment:: parent(~{::.container}, ~{::title},~{script})}"
+  th:replace="~{fragment:: parent(~{::.container}, ~{::title},~{::script})}"
 >
   <head>
     <title>All Contact Page</title>
@@ -22,6 +22,9 @@
               <div class="contacts_container p-5">
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                   <!-- search bar start  -->
+
+                  <!-- showing message after deleteing the contact -->
+                  <div data-th-replace="~{message::messageBox}"></div>
 
                   <form
                     data-th-action="@{'/user/contact/search'}"
@@ -154,15 +157,36 @@
                         </td>
                         <td class="px-6 py-4">
                           <div>
-                            <a href="" class="p-2"
-                              ><i class="fa-solid fa-trash"></i
-                            ></a>
-                            <a href="" class="p-2"
+                            <!-- <a
+                              th:onclick="deleteContact([[${c.id}]])"
+                              data-th-href="@{'/user/contact/delete/' + ${c.id}}"
+                              class="p-2"
+                              ><i class="fa-solid fa-trash"></i>delete</a
+                            > -->
+
+                            <!-- delete contact  -->
+                            <button
+                              th:onclick="deleteContact([[${c.id}]])"
+                              class="p-2"
+                            >
+                              <i class="fa-solid fa-trash"></i>delete
+                            </button>
+
+                            <!-- update contact -->
+                            <a
+                              data-th-href="@{'/user/contact/view/' +*{id}}"
+                              class="p-2"
                               ><i class="fa-solid fa-pen"></i
                             ></a>
-                            <a href="" class="p-2">
-                              <i class="fa-solid fa-eye"></i
-                            ></a>
+
+                            <!-- view contact -->
+                            <button
+                              th:data-id="${c.id}"
+                              th:onclick="loadContactData([[${c.id}]])"
+                              class="p-2"
+                            >
+                              <i class="fa-solid fa-eye"></i>
+                            </button>
                           </div>
                         </td>
                       </tr>
@@ -255,8 +279,7 @@
         data-th-replace="~{user/contact_models::contact_view_models_fragment}"
       ></div>
     </div>
-    <script>
-      console.log("contacts page ");
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+    <script data-th-src="@{'/js/contact.js'}"></script>
   </body>
 </html>

@@ -21,6 +21,9 @@
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
               <!-- search bar start  -->
 
+              <!-- showing message after delete contact -->
+              <div data-th-replace="~{message::messageBox}"></div>
+
               <form
                 data-th-action="@{'/user/contact/search'}"
                 data-th-object="${contactSearchForm}"
@@ -154,15 +157,29 @@
                     </td>
                     <td class="px-6 py-4">
                       <div>
-                        <a href="" class="p-2"
-                          ><i class="fa-solid fa-trash"></i
-                        ></a>
+                        <!-- <a
+                          th:onclick="deleteContact([[${c.id}]])"
+                          href=""
+                          class="p-2"
+                          ><i class="fa-solid fa-trash"></i>delete</a
+                        > -->
+                        <button
+                          th:onclick="deleteContact([[${c.id}]])"
+                          class="p-2"
+                        >
+                          <i class="fa-solid fa-trash"></i>delete
+                        </button>
+
                         <a href="" class="p-2"
                           ><i class="fa-solid fa-pen"></i
                         ></a>
-                        <a href="" class="p-2">
-                          <i class="fa-solid fa-eye"></i
-                        ></a>
+                        <button
+                          th:data-id="${c.id}"
+                          th:onclick="loadContactData([[${c.id}]])"
+                          class="p-2"
+                        >
+                          <i class="fa-solid fa-eye"></i>
+                        </button>
                       </div>
                     </td>
                   </tr>
@@ -252,10 +269,12 @@
           </div>
         </div>
       </div>
+      <div
+        data-th-replace="~{user/contact_models::contact_view_models_fragment}"
+      ></div>
     </div>
 
-    <script>
-      console.log("Search Contact Page Loaded");
-    </script>
+    <script data-th-src="@{'/js/contact.js'}"></script>
+    <script></script>
   </body>
 </html>

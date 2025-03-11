@@ -28,13 +28,25 @@ public class ContactServiceImpl implements ContactService {
         contact.setId(contactId);
 
         return contactRepo.save(contact);
-
-
     }
 
     @Override
     public Contact update(Contact contact) {
-        return null;
+      var contactOld= contactRepo.findById(contact.getId()).orElseThrow(()->new ResourceNotFoundException("Contact Not Found ContactImpl \"update Method\""));
+        contactOld.setName(contact.getName());
+        contactOld.setEmail(contact.getEmail());
+        contactOld.setPhoneNumber(contact.getPhoneNumber());
+        contactOld.setAddress(contact.getAddress());
+        contactOld.setDescription(contact.getDescription());
+        contactOld.setPicture(contact.getPicture());
+        contactOld.setFavourate(contact.isFavourate());
+        contactOld.setWebsiteLink(contact.getWebsiteLink());
+        contactOld.setLinkedInLink(contact.getLinkedInLink());
+        contactOld.setCloudinaryImagePublicId(contact.getCloudinaryImagePublicId());
+//        contactOld.setLinks(contact.getLinks() );
+
+        return  contactRepo.save(contactOld);
+
     }
 
     @Override

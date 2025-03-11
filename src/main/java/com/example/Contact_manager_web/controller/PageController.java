@@ -108,6 +108,7 @@ public class PageController {
 			user.setEmail(userForm.getEmail());
 			user.setPassword(userForm.getPassword());
 			user.setAbout(userForm.getAbout());
+			user.setEnabled(false);
 			user.setPhoneNumber(userForm.getPhoneNumber());
 			user.setProfilePic("https://www.vecteezy.com/png/20911740-user-profile-icon-profile-avatar-user-icon-male-icon-face-icon-profile-icon");
 

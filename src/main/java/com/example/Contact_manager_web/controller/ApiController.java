@@ -14,7 +14,12 @@ public class ApiController {
     private ContactService contactService;
     //get contact
     @GetMapping("/contacts/{contactId}")
-    public Contact getContact(@PathVariable String contactId){
-            return contactService.getById(contactId);
+    public Contact getContact(@PathVariable String contactId) {
+        System.out.println("Fetching contact with ID: " + contactId);
+        return contactService.getById(contactId);
     }
+
+
+
+
 }

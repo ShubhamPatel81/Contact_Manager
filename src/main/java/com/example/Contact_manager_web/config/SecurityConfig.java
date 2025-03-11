@@ -35,6 +35,8 @@ public class SecurityConfig {
 //    }
 
     @Autowired
+    private AuthenticationFailureHandler authenticationFailureHandler;
+    @Autowired
     private OAuthenticationSuccessHandler oAuthenticationSuccessHandler;
     @Autowired
     private SecurityCustomUserDetailsService userDetailsService;
@@ -85,11 +87,17 @@ public class SecurityConfig {
 //
 //                   }
 //               });
+
+           formLogin.failureHandler( authenticationFailureHandler);
        });
+
+
+
         httpSecurity.logout(logoutForm->{
                 logoutForm.logoutUrl("/do-logout");
                 logoutForm.logoutSuccessUrl("/login?logout=true");
         });
+
 
         // Oauth2 login configuration
         httpSecurity.oauth2Login(oauth->{
