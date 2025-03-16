@@ -92,3 +92,38 @@ async function deleteContact(id) {
   });
 }
 
+
+
+// exporting data using export button
+// function exportData() {
+//   // alert("Exporting Data");
+//   TableToExcel.convert(document.getElementById("contactTable"), {
+//     name: "contactTable.xlsx",
+//     sheet: {
+//       name: "Sheet 1"
+//     }
+//   });
+// }
+
+
+function loadTableToExcel(callback) {
+  if (window.TableToExcel) {
+    callback();
+  } else {
+    const script = document.createElement("script");
+    script.src = "https://cdn.jsdelivr.net/npm/@linways/table-to-excel@1.0.4/dist/tableToExcel.min.js";
+    script.onload = callback;
+    document.head.appendChild(script);
+  }
+}
+
+function exportData() {
+  loadTableToExcel(() => {
+    TableToExcel.convert(document.getElementById("contactTable"), {
+      name: "contactTable.xlsx",
+      sheet: {
+        name: "Sheet 1"
+      }
+    });
+  });
+}

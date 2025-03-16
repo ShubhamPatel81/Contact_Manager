@@ -3,7 +3,9 @@ package com.example.Contact_manager_web.service.Implementation;
 import com.example.Contact_manager_web.Exceptions.ResourceNotFoundException;
 import com.example.Contact_manager_web.entities.User;
 import com.example.Contact_manager_web.helper.AppConstants;
+import com.example.Contact_manager_web.helper.Helper;
 import com.example.Contact_manager_web.repositories.UserRepo;
+import com.example.Contact_manager_web.service.EmailService;
 import com.example.Contact_manager_web.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +24,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepo userRepo;
 
+
+    @Autowired
+    private EmailService emailService;
     @Autowired
     private PasswordEncoder passwordEncoder;
     private Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
@@ -39,7 +44,23 @@ public class UserServiceImpl implements UserService {
 //        set user role
         user.setRoleList(List.of(AppConstants.ROLE_USER));
 
-        return userRepo.save(user);
+
+
+        //generating token for email authentication
+        String emailToken = UUID.randomUUID().toString();
+
+        user.setEmailToken(emailToken);
+
+        User saveUser= userRepo.save(user);
+
+        String emailLink = Helper.getLinkForEmailVerification(emailToken);
+
+        emailService.sendEmail(saveUser.getEmail(),"Verify using email from email account",emailLink );
+
+
+
+        return saveUser;
+
     }
 
     @Override

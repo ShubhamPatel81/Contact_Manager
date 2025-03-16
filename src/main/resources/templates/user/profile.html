@@ -5,21 +5,104 @@
 >
   <head>
     <title th:text="${loggedInUser.name}">Profile Page</title>
+    <!-- Include Tailwind CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
   </head>
-  <body>
-    <div class="container">
-      <div>
-        <!-- sider for login user  -->
-        <!-- if user is loggedIn :then siderbar  -->
-        <div th:if="${loggedInUser}">
-          <div th:replace="~{user/siderbar}"></div>
-        </div>
+  <body
+    class="bg-gradient-to-r from-indigo-500 to-purple-600 min-h-screen flex items-center justify-center"
+  >
+    <div class="container mx-auto p-4">
+      <div th:if="${loggedInUser}">
+        <div th:replace="~{user/siderbar}"></div>
+      </div>
 
-        <h1>Welcome to Profile page</h1>
+      <div class="flex justify-center">
+        <div
+          class="bg-white dark:bg-gray-700 shadow-2xl rounded-xl p-8 w-full max-w-lg transform hover:scale-105 transition-transform duration-300 text-center relative overflow-hidden"
+        >
+          <!-- Profile Cover -->
+          <div
+            class="absolute inset-0 bg-cover bg-center opacity-20"
+            style="background-image: url('/path-to-cover-image.jpg')"
+          ></div>
+
+          <!-- Welcome Message -->
+          <h1
+            class="text-3xl font-bold text-gray-900 dark:text-white mb-6 relative z-10"
+          >
+            Welcome to Your Profile Page
+          </h1>
+
+          <!-- Profile Photo -->
+          <div class="relative z-10 flex flex-col items-center">
+            <div
+              class="w-32 h-32 rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-lg transform hover:scale-110 transition-transform duration-300"
+            >
+              <img
+                th:src="${loggedInUser.profilePic}"
+                alt="Profile Photo"
+                class="w-full h-full object-cover"
+              />
+            </div>
+
+            <!-- User Information -->
+            <h2
+              class="mt-4 text-2xl font-bold text-gray-900 dark:text-white"
+              th:text="${loggedInUser.name}"
+            >
+              User Name
+            </h2>
+            <p
+              class="text-gray-600 dark:text-gray-400 text-sm"
+              th:text="${loggedInUser.email}"
+            >
+              user@example.com
+            </p>
+            <p
+              class="text-gray-600 dark:text-gray-400 text-sm"
+              th:text="${loggedInUser.phoneNumber}"
+            >
+              +1234567890
+            </p>
+
+            <!-- About Section -->
+            <p
+              class="mt-4 text-gray-700 dark:text-gray-300 italic text-sm"
+              th:text="${loggedInUser.about}"
+            >
+              This is a brief description about the user.
+            </p>
+
+            <!-- Verification Status -->
+            <div class="flex justify-center space-x-4 mt-4">
+              <span
+                class="px-3 py-1 text-xs font-semibold rounded-full text-white"
+                th:classappend="${loggedInUser.emailVerified ? 'bg-green-500' : 'bg-red-500'}"
+                th:text="${loggedInUser.emailVerified ? 'Email Verified' : 'Email Not Verified'}"
+              ></span>
+              <span
+                class="px-3 py-1 text-xs font-semibold rounded-full text-white"
+                th:classappend="${loggedInUser.phoneVerified ? 'bg-green-500' : 'bg-red-500'}"
+                th:text="${loggedInUser.phoneVerified ? 'Phone Verified' : 'Phone Not Verified'}"
+              ></span>
+            </div>
+
+            <!-- Edit Profile Button -->
+            <button
+              class="mt-6 px-6 py-2 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-500 transition-all duration-300 shadow-lg dark:bg-gray-200 dark:text-white-900 dark:hover:bg-gray-300"
+            >
+              Edit Profile
+            </button>
+          </div>
+        </div>
       </div>
     </div>
+
     <script>
-      console.log("profile page ");
+      console.log("Profile Page Loaded");
     </script>
   </body>
 </html>

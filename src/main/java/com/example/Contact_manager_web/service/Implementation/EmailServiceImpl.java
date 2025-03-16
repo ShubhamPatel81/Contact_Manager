@@ -20,7 +20,7 @@ public class EmailServiceImpl implements EmailService {
     @Override
     public void sendEmail(String to, String subject, String body) {
 
-        SimpleMailMessage mailMessage =new SimpleMailMessage();
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
 
         mailMessage.setTo(to);
         mailMessage.setSubject(subject);
@@ -28,11 +28,7 @@ public class EmailServiceImpl implements EmailService {
         mailMessage.setFrom(domain_name);
 
         eMailSender.send(mailMessage);
-
-
-
     }
-
     @Override
     public void sendEmaiWithHtml() {
 

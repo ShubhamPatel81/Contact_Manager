@@ -52,6 +52,17 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Contact> contacts = new ArrayList<>();
 
+
+    private String emailToken;
+
+    public String getEmailToken() {
+        return emailToken;
+    }
+
+    public void setEmailToken(String emailToken) {
+        this.emailToken = emailToken;
+    }
+
     @Builder
     public static User create(String userId, String name, String email, String password, String about,
                               String profilePic, String phoneNumber, boolean enabled, boolean emailVerified,

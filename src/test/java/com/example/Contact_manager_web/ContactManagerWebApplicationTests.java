@@ -15,10 +15,11 @@ class ContactManagerWebApplicationTests {
 	@Autowired
 	private EmailService emailService;
 
-	@Test
-	void sendEmailTest(){
-		emailService.sendEmail("shubhampatel872005@gmail.com", "Just checking this functionality","this is Contact manager project");
-
-	}
+		@Test
+		void sendEmailTest() {
+			emailService.sendEmail("siddharthsingh71997@gmail.com",
+					"Just checking this functionality",
+					"This is Contact Manager project");
+		}
 
 }
