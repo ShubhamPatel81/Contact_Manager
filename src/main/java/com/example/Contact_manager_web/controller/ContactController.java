@@ -34,6 +34,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Controller
@@ -267,6 +268,23 @@ public class ContactController {
 
 
 
+    @GetMapping("/user/dashboard")
+    public String showDashboard(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+        System.out.println("Dashboard endpoint called"); // Debug: Check endpoint invocation
+
+        Optional<User> user = userService.getUserById(userDetails.getUsername());
+        if (user == null) {
+            System.out.println("User not found for email: " + userDetails.getUsername());
+        } else {
+            System.out.println("Logged-in User ID: " + user.get().getUserId());
+        }
+
+        long totalContacts = contactService.getTotalContactsByUser(user.get().getUserId());
+        System.out.println("Total Contacts Retrieved: " + totalContacts);
+
+        model.addAttribute("totalContacts", totalContacts);
+        return "dashboard";
+    }
 
 }
 

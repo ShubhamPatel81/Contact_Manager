@@ -107,4 +107,15 @@ public class ContactServiceImpl implements ContactService {
         var pageable = PageRequest.of(page, size,sort);
       return   contactRepo.findByUser(user,pageable);
     }
+
+
+
+    // Counting the all the contact
+
+    @Override
+    public long getTotalContactsByUser(String userId) {
+        long count = contactRepo.countByUserId(userId);
+        System.out.println("Total contacts for user " + userId + " = " + count); // Debug log
+        return count;
+    }
 }
