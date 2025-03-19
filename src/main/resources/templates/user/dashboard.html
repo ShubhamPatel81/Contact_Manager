@@ -15,13 +15,122 @@
           <div th:replace="~{user/siderbar}"></div>
           <div class="sm:pl-64 pt-20" style="height: 1000px">
             <div class="flex justify-center flex-col items-center">
-              <h1 class="text-5xl">Welcome to Dashbaord page</h1>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Consequatur, ratione!
-              </p>
+              <!-- Main Content -->
+              <div class="flex-grow ml-64">
+                <!-- Added ml-64 to respect sidebar space -->
+                <!-- Header -->
+                <header class="bg-white shadow-md p-4">
+                  <div class="flex justify-between items-center">
+                    <h1 class="text-2xl font-bold text-gray-800">Dashboard</h1>
+                    <div class="flex items-center space-x-4">
+                      <img
+                        th:src="@{${loggedInUser.profilePic}}"
+                        onerror="this.src='/images/call.png'"
+                        class="h-6 me-3 sm:h-7"
+                        alt=" Logo"
+                      />
+                      <span
+                        th:text=" 'Welcome, '+${loggedInUser.name}"
+                        class="text-gray-400"
+                        >Logged in user</span
+                      >
+                    </div>
+                  </div>
+                </header>
+
+                <!-- Main Content Area -->
+                <main class="p-6">
+                  <!-- Cards Section -->
+                  <div
+                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8"
+                  >
+                    <!-- Total Contacts Card -->
+                    <div
+                      class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+                    >
+                      <div class="text-blue-600 text-4xl mb-4">📇</div>
+                      <h3 class="text-xl font-bold text-gray-800 mb-2">
+                        Total Contacts
+                      </h3>
+                      <p
+                        class="text-gray-600 font-semibold text-lg"
+                        th:text="${totalContacts}"
+                      ></p>
+                    </div>
+
+                    <!-- Recent Activities Card -->
+                    <div
+                      class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+                    >
+                      <div class="text-blue-600 text-4xl mb-4">📅</div>
+                      <h3 class="text-xl font-bold text-gray-800 mb-2">
+                        Recent Activities
+                      </h3>
+                      <p class="text-gray-600">5 new updates</p>
+                    </div>
+
+                    <!-- Storage Usage Card -->
+                    <div
+                      class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+                    >
+                      <div class="text-blue-600 text-4xl mb-4">💾</div>
+                      <h3 class="text-xl font-bold text-gray-800 mb-2">
+                        Storage Usage
+                      </h3>
+                      <p class="text-gray-600">75% used</p>
+                    </div>
+                  </div>
+
+                  <!-- Recent Contacts Table -->
+                  <div
+                    class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+                  >
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">
+                      Recent Contacts
+                    </h3>
+                    <table class="w-full text-left">
+                      <thead>
+                        <tr class="border-b">
+                          <th class="py-2">Name</th>
+                          <th class="py-2">Email</th>
+                          <th class="py-2">Phone</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="border-b">
+                          <td class="py-2">John Doe</td>
+                          <td class="py-2">john@example.com</td>
+                          <td class="py-2">+1 123 456 7890</td>
+                        </tr>
+                        <tr class="border-b">
+                          <td class="py-2">Jane Smith</td>
+                          <td class="py-2">jane@example.com</td>
+                          <td class="py-2">+1 987 654 3210</td>
+                        </tr>
+                        <tr class="border-b">
+                          <td class="py-2">Mike Johnson</td>
+                          <td class="py-2">mike@example.com</td>
+                          <td class="py-2">+1 456 789 1234</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </main>
+              </div>
+
+              <!-- Footer -->
+              <footer class="bg-white shadow-lg mt-auto ml-64">
+                <!-- Added ml-64 to respect sidebar space -->
+                <div class="max-w-6xl mx-auto px-4 py-8 text-center">
+                  <p class="text-gray-600">
+                    &copy; 2023 Contact Manager. All rights reserved.
+                  </p>
+                </div>
+              </footer>
             </div>
           </div>
+        </div>
+      </div>
     </div>
     <script>
       console.log("profile page ");

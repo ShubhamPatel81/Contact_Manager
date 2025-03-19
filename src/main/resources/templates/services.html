@@ -6,7 +6,120 @@
   <head> </head>
   <body>
     <section id="content">
-      <h1>This is Services page fragment heading</h1>
+      <!-- Main Content -->
+      <div class="flex-grow">
+        <!-- Hero Section -->
+        <section class="bg-slate-500 text-white py-20">
+          <div class="container mx-auto text-center mb-5">
+            <h1 class="text-5xl font-bold mb-6">Our Services</h1>
+            <p class="text-xl mb-8">
+              We provide a range of services to help you manage your contacts
+              efficiently and effectively.
+            </p>
+            <a
+              th:href="@{'/user/profile'}"
+              class="px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-blue-50"
+              >Get Started</a
+            >
+          </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="container mx-auto px-4 py-16">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Service 1 -->
+            <div
+              class="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow"
+            >
+              <div class="text-blue-600 text-4xl mb-4">📂</div>
+              <h3 class="text-xl font-bold text-gray-800 mb-4">
+                Contact Organization
+              </h3>
+              <p class="text-gray-600">
+                Easily categorize and manage your contacts with tags and groups
+                for better organization.
+              </p>
+            </div>
+
+            <!-- Service 2 -->
+            <div
+              class="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow"
+            >
+              <div class="text-blue-600 text-4xl mb-4">🔍</div>
+              <h3 class="text-xl font-bold text-gray-800 mb-4">Quick Search</h3>
+              <p class="text-gray-600">
+                Find any contact instantly with our powerful and intuitive
+                search feature.
+              </p>
+            </div>
+
+            <!-- Service 3 -->
+            <div
+              class="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow"
+            >
+              <div class="text-blue-600 text-4xl mb-4">📱</div>
+              <h3 class="text-xl font-bold text-gray-800 mb-4">
+                Cross-Device Sync
+              </h3>
+              <p class="text-gray-600">
+                Access your contacts from anywhere, on any device, with seamless
+                synchronization.
+              </p>
+            </div>
+
+            <!-- Service 4 -->
+            <div
+              class="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow"
+            >
+              <div class="text-blue-600 text-4xl mb-4">📊</div>
+              <h3 class="text-xl font-bold text-gray-800 mb-4">
+                Analytics & Reports
+              </h3>
+              <p class="text-gray-600">
+                Gain insights into your contact management with detailed
+                analytics and reports.
+              </p>
+            </div>
+
+            <!-- Service 5 -->
+            <div
+              class="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow"
+            >
+              <div class="text-blue-600 text-4xl mb-4">🔒</div>
+              <h3 class="text-xl font-bold text-gray-800 mb-4">
+                Data Security
+              </h3>
+              <p class="text-gray-600">
+                Your data is safe with us. We use advanced encryption to protect
+                your contacts.
+              </p>
+            </div>
+
+            <!-- Service 6 -->
+            <div
+              class="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow"
+            >
+              <div class="text-blue-600 text-4xl mb-4">📧</div>
+              <h3 class="text-xl font-bold text-gray-800 mb-4">
+                Email Integration
+              </h3>
+              <p class="text-gray-600">
+                Integrate your email accounts to manage contacts directly from
+                your inbox.
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Footer -->
+      <footer class="bg-white shadow-lg py-4 text-center mt-4 w-full">
+        <div class="max-w-6xl mx-auto px-4">
+          <p class="text-gray-600">
+            &copy; 2023 Contact Manager. All rights reserved.
+          </p>
+        </div>
+      </footer>
     </section>
     <script>
       console.log("Script tag");

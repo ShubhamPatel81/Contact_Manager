@@ -1,18 +1,86 @@
 <!DOCTYPE html>
-<html lang="en" th:replace="~{fragment:: parent(~{::#content},  ~{::title},~{::script})}">
+<html
+  lang="en"
+  th:replace="~{fragment:: parent(~{::#content},  ~{::title},~{::script})}"
+>
   <head>
     <title>Contact Us</title>
   </head>
   <body>
     <section id="content">
-      <h1>This is Contact Us page fragment heading</h1>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima, eius
-        quo accusamus iusto, quia dolores mollitia nostrum explicabo atque earum
-        rem, facere voluptas magnam repellendus obcaecati debitis ipsam incidunt
-        ducimus nobis inventore deleniti sapiente facilis? Porro ipsum
-        accusantium ut, impedit officiis consequuntur debitis reprehenderit cum.
-      </p>
+      <!-- Main Content -->
+      <div class="flex-grow">
+        <!-- Hero Section -->
+        <section class="bg-slate-500 text-white py-20">
+          <div class="container mx-auto text-center">
+            <h1 class="text-5xl font-bold mb-6">Contact Us</h1>
+            <p class="text-xl mb-8">
+              Have questions or need support? Reach out to us or connect with
+              the creator directly.
+            </p>
+            <a
+              href=" https://www.linkedin.com/in/shubham-patel-8b296b243/"
+              class="px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-blue-50"
+              >Get in Touch</a
+            >
+          </div>
+        </section>
+
+        <!-- Contact Information Section -->
+        <section id="contact-info" class="container mx-auto px-4 py-16 mt-5">
+          <div
+            class="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow"
+          >
+            <div class="text-blue-600 text-4xl mb-4">📞</div>
+            <h3 class="text-xl font-bold text-gray-800 mb-6">
+              Connect with Shubham Patel
+            </h3>
+            <div class="space-y-4">
+              <!-- GitHub -->
+              <div>
+                <a
+                  href="https://github.com/ShubhamPatel81"
+                  target="_blank"
+                  class="text-blue-600 hover:text-blue-700 font-semibold"
+                >
+                  GitHub: https://github.com/ShubhamPatel81
+                </a>
+              </div>
+
+              <!-- LinkedIn -->
+              <div>
+                <a
+                  href="https://www.linkedin.com/in/shubham-patel-8b296b243/"
+                  target="_blank"
+                  class="text-blue-600 hover:text-blue-700 font-semibold"
+                >
+                  LinkedIn: https://www.linkedin.com/in/shubham-patel-8b296b243/
+                </a>
+              </div>
+
+              <!-- Portfolio Website -->
+              <div>
+                <a
+                  href="https://shubhampatel-nine.vercel.app/"
+                  target="_blank"
+                  class="text-blue-600 hover:text-blue-700 font-semibold"
+                >
+                  Portfolio: https://shubhampatel-nine.vercel.app/
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Footer -->
+      <footer class="bg-white shadow-lg mt-4">
+        <div class="max-w-6xl mx-auto px-4 py-8 text-center">
+          <p class="text-gray-600">
+            &copy; 2023 Contact Manager. All rights reserved.
+          </p>
+        </div>
+      </footer>
     </section>
     <script>
       console.log("Script tag");

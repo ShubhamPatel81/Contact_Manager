@@ -4,24 +4,105 @@
   th:replace="~{fragment:: parent(~{::.container}, ~{::title},~{::script})}"
 >
   <head>
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
-    <link rel="stylesheet" th:href="@{/css/output.css}" />
+    <head>
+      <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+      <link rel="stylesheet" th:href="@{/css/output.css}" />
+    </head>
+    <title>Home page</title>
   </head>
   <body>
-    <div class="container bg-red-400">
-      <div class="text-red-500">Tailwind CSS is working!</div>
+    <div id="content" class="container">
+      <!-- Banner Section -->
+      <section
+        class="bg-slate-500 text-white py-20 animate__animated animate__fadeInDown"
+      >
+        <div class="container mx-auto text-center flex-grow">
+          <!-- Hero Section -->
+          <div class="max-w-6xl mx-auto px-4 py-16 text-center">
+            <h1 class="text-5xl font-bold text-amber-50 mb-6">
+              Manage Your Contacts Effortlessly
+            </h1>
+            <p class="text-xl text-gray-600 mb-8">
+              Keep all your contacts in one place. Organize, access, and stay
+              connected with ease.
+            </p>
+            <div class="space-x-4">
+              <a
+                th:href="@{'/user/profile'}"
+                class="px-6 py-3 bg-gray-600 text-white font-semibold rounded-lg hover:bg-blue-700"
+                >Get Started</a
+              >
+              <a
+                th:href="@{/contact}"
+                class="px-6 py-3 bg-gray-600 font-semibold text-white rounded-lg hover:bg-blue-700"
+                >Learn More</a
+              >
+            </div>
+            <!-- Login and Register Buttons -->
+            <div class="mt-8 space-x-4">
+              <a
+                th:href="@{/login}"
+                class="px-6 py-2 text-white bg-gray-600 font-semibold hover:bg-blue-700 rounded-lg"
+                >Login</a
+              >
+              <a
+                th:href="@{/register}"
+                class="px-6 py-2 bg-gray-600 text-white font-semibold rounded-lg hover:bg-blue-700"
+                >Register</a
+              >
+            </div>
+          </div>
 
-      <h3 class="text-3xl font-bold" th:text="${name}">
-        Welcome to the home page of SCM
-      </h3>
-      <h3 th:text="${Work}"></h3>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sunt vero
-        accusantium pariatur porro. Eius aliquam dolorem facilis optio velit
-        vitae nemo animi neque, ullam magnam impedit corrupti facere deserunt
-        veniam libero dignissimos, nobis possimus!
-      </p>
-      <a th:href="${youtubeVideo}">Click Here To Open</a>
+          <!-- Features Section -->
+          <div class="max-w-6xl mx-auto px-4 py-16 mt-5">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <!-- Feature 1 -->
+              <div class="bg-white p-8 rounded-lg shadow-md text-center">
+                <div class="text-blue-600 text-4xl mb-4">📂</div>
+                <h3 class="text-xl font-bold text-gray-800 mb-4">
+                  Organize Contacts
+                </h3>
+                <p class="text-gray-600">
+                  Easily categorize and manage your contacts with tags and
+                  groups.
+                </p>
+              </div>
+              <!-- Feature 2 -->
+              <div class="bg-white p-8 rounded-lg shadow-md text-center">
+                <div class="text-blue-600 text-4xl mb-4">🔍</div>
+                <h3 class="text-xl font-bold text-gray-800 mb-4">
+                  Quick Search
+                </h3>
+                <p class="text-gray-600">
+                  Find any contact instantly with our powerful search feature.
+                </p>
+              </div>
+              <!-- Feature 3 -->
+              <div class="bg-white p-8 rounded-lg shadow-md text-center">
+                <div class="text-blue-600 text-4xl mb-4">📱</div>
+                <h3 class="text-xl font-bold text-gray-800 mb-4">
+                  Sync Across Devices
+                </h3>
+                <p class="text-gray-600">
+                  Access your contacts from anywhere, on any device.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-white shadow-lg mt-4">
+          <div class="max-w-6xl mx-auto px-4 py-8 text-center">
+            <p class="text-gray-600">
+              &copy; 2023 Contact Manager. All rights reserved.
+            </p>
+          </div>
+        </footer>
+      </section>
     </div>
+    <script>
+      console.log("Home page");
+    </script>
   </body>
 </html>

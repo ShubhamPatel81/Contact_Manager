@@ -31,4 +31,8 @@ public interface ContactRepo extends JpaRepository<Contact, String> {
     Page<Contact> findByUserAndPhoneNumberContaining(User user,String phoneNumber, Pageable pageable);
 
 
+
+    // Count total contacts for a specific user
+    @Query("SELECT COUNT(c) FROM Contact c WHERE c.user.id = :userId")
+    long countByUserId(@Param("userId") Long userId);
 }
