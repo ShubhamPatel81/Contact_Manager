@@ -2,143 +2,176 @@
 <html
   lang="en"
   th:replace="~{fragment:: parent(~{::.container}, ~{::title},~{script})}"
+  class="dark"
 >
   <head>
-    <title th:text="${loggedInUser.name}">Dashbord Page</title>
+    <title th:text="${loggedInUser.name}">Dashboard Page</title>
+    <!-- Ensure Tailwind CSS is included in your project -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
   </head>
-  <body>
-    <div class="container">
-      <div>
-        <!-- sider for login user  -->
-        <!-- if user is loggedIn :then siderbar  -->
-        <div th:if="${loggedInUser}">
+  <body class="bg-gray-100 dark:bg-gray-900">
+    <div class="container p-4 pl-56 ml-60">
+      <!-- Added pl-56 for 14rem padding -->
+      <div class="flex">
+        <!-- Sidebar for logged-in user -->
+        <div
+          th:if="${loggedInUser}"
+          class="w-56 fixed inset-y-0 left-0 bg-white dark:bg-gray-800 shadow-md p-4"
+        >
           <div th:replace="~{user/siderbar}"></div>
-          <div
-            class="sm:pl-64 pt-20"
-            style="height: 1000px; margin-left: 250px; margin-right: 34px"
-          >
-            <div class="flex justify-center flex-col items-center">
-              <!-- Main Content -->
-              <div class="flex-grow ml-64">
-                <!-- Added ml-64 to respect sidebar space -->
-                <!-- Header -->
-                <header class="bg-white shadow-md p-4">
-                  <div class="flex justify-between items-center">
-                    <h1 class="text-2xl font-bold text-gray-800">Dashboard</h1>
-                    <div class="flex items-center space-x-4">
-                      <img
-                        th:src="@{${loggedInUser.profilePic}}"
-                        onerror="this.src='/images/call.png'"
-                        class="h-6 me-3 sm:h-7"
-                        alt=" Logo"
-                      />
-                      <span
-                        th:text=" 'Welcome, '+${loggedInUser.name}"
-                        class="text-gray-400"
-                        >Logged in user</span
-                      >
-                    </div>
-                  </div>
-                </header>
+        </div>
 
-                <!-- Main Content Area -->
-                <main class="p-6">
-                  <!-- Cards Section -->
-                  <div
-                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8"
-                  >
-                    <!-- Total Contacts Card -->
-                    <div
-                      class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
-                    >
-                      <div class="text-blue-600 text-4xl mb-4">📇</div>
-                      <h3 class="text-xl font-bold text-gray-800 mb-2">
-                        Total Contacts
-                      </h3>
-                      <p>
-                        Total Contacts:
-                        <span
-                          th:text="${totalContacts} ?: 'No Data Found'"
-                        ></span>
-                      </p>
-                    </div>
-
-                    <!-- Recent Activities Card -->
-                    <div
-                      class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
-                    >
-                      <div class="text-blue-600 text-4xl mb-4">📅</div>
-                      <h3 class="text-xl font-bold text-gray-800 mb-2">
-                        Recent Activities
-                      </h3>
-                      <p class="text-gray-600">5 new updates</p>
-                    </div>
-
-                    <!-- Storage Usage Card -->
-                    <div
-                      class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
-                    >
-                      <div class="text-blue-600 text-4xl mb-4">💾</div>
-                      <h3 class="text-xl font-bold text-gray-800 mb-2">
-                        Storage Usage
-                      </h3>
-                      <p class="text-gray-600">75% used</p>
-                    </div>
-                  </div>
-
-                  <!-- Recent Contacts Table -->
-                  <div
-                    class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
-                  >
-                    <h3 class="text-xl font-bold text-gray-800 mb-4">
-                      Recent Contacts
-                    </h3>
-                    <table class="w-full text-left">
-                      <thead>
-                        <tr class="border-b">
-                          <th class="py-2">Name</th>
-                          <th class="py-2">Email</th>
-                          <th class="py-2">Phone</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr class="border-b">
-                          <td class="py-2">John Doe</td>
-                          <td class="py-2">john@example.com</td>
-                          <td class="py-2">+1 123 456 7890</td>
-                        </tr>
-                        <tr class="border-b">
-                          <td class="py-2">Jane Smith</td>
-                          <td class="py-2">jane@example.com</td>
-                          <td class="py-2">+1 987 654 3210</td>
-                        </tr>
-                        <tr class="border-b">
-                          <td class="py-2">Mike Johnson</td>
-                          <td class="py-2">mike@example.com</td>
-                          <td class="py-2">+1 456 789 1234</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </main>
+        <!-- Main Content -->
+        <div class="flex-1 p-12 ml-48">
+          <!-- Header -->
+          <header class="bg-white dark:bg-gray-800 shadow-md p-4 rounded-lg">
+            <div class="flex justify-between items-center">
+              <h1 class="text-2xl font-bold text-gray-800 dark:text-gray-200">
+                Dashboard
+              </h1>
+              <div class="flex items-center space-x-4">
+                <img
+                  th:src="@{${loggedInUser.profilePic}}"
+                  onerror="this.src='/images/call.png'"
+                  class="h-8 w-8 rounded-full"
+                  alt="Profile"
+                />
+                <span
+                  th:text=" 'Welcome, '+${loggedInUser.name}"
+                  class="text-gray-600 dark:text-gray-300"
+                ></span>
               </div>
-
-              <!-- Footer -->
-              <footer class="bg-white shadow-lg mt-auto ml-64">
-                <!-- Added ml-64 to respect sidebar space -->
-                <div class="max-w-6xl mx-auto px-4 py-8 text-center">
-                  <p class="text-gray-600">
-                    &copy; 2023 Contact Manager. All rights reserved.
-                  </p>
-                </div>
-              </footer>
             </div>
+          </header>
+
+          <!-- Cards Section -->
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-8"
+          >
+            <!-- Total Contacts Card -->
+            <div
+              class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+            >
+              <div class="text-blue-600 dark:text-blue-400 text-4xl mb-4">
+                📇
+              </div>
+              <h3
+                class="text-xl font-bold text-gray-800 dark:text-gray-200 mb-2"
+              >
+                Total Contacts
+              </h3>
+              <p class="text-gray-600 dark:text-gray-300">
+                Total Contacts:
+                <span th:text="${totalContacts} ?: 'No Data Found'"></span>
+              </p>
+            </div>
+
+            <!-- Recent Activities Card -->
+            <div
+              class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+            >
+              <div class="text-blue-600 dark:text-blue-400 text-4xl mb-4">
+                📅
+              </div>
+              <h3
+                class="text-xl font-bold text-gray-800 dark:text-gray-200 mb-2"
+              >
+                Recent Activities
+              </h3>
+              <p class="text-gray-600 dark:text-gray-300">5 new updates</p>
+            </div>
+
+            <!-- Storage Usage Card -->
+            <div
+              class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+            >
+              <div class="text-blue-600 dark:text-blue-400 text-4xl mb-4">
+                💾
+              </div>
+              <h3
+                class="text-xl font-bold text-gray-800 dark:text-gray-200 mb-2"
+              >
+                Storage Usage
+              </h3>
+              <p class="text-gray-600 dark:text-gray-300">75% used</p>
+            </div>
+          </div>
+
+          <!-- Recent Contacts Table -->
+          <div
+            class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-x-auto"
+          >
+            <h3 class="text-xl font-bold text-gray-800 dark:text-gray-200 mb-4">
+              Recent Contacts
+            </h3>
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="border-b dark:border-gray-700">
+                  <th class="py-2 px-4 text-gray-800 dark:text-gray-200">
+                    Name
+                  </th>
+                  <th class="py-2 px-4 text-gray-800 dark:text-gray-200">
+                    Email
+                  </th>
+                  <th class="py-2 px-4 text-gray-800 dark:text-gray-200">
+                    Phone
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b dark:border-gray-700">
+                  <td class="py-2 px-4 text-gray-800 dark:text-gray-200">
+                    John Doe
+                  </td>
+                  <td class="py-2 px-4 text-gray-800 dark:text-gray-200">
+                    john@example.com
+                  </td>
+                  <td class="py-2 px-4 text-gray-800 dark:text-gray-200">
+                    +1 123 456 7890
+                  </td>
+                </tr>
+                <tr class="border-b dark:border-gray-700">
+                  <td class="py-2 px-4 text-gray-800 dark:text-gray-200">
+                    Jane Smith
+                  </td>
+                  <td class="py-2 px-4 text-gray-800 dark:text-gray-200">
+                    jane@example.com
+                  </td>
+                  <td class="py-2 px-4 text-gray-800 dark:text-gray-200">
+                    +1 987 654 3210
+                  </td>
+                </tr>
+                <tr class="border-b dark:border-gray-700">
+                  <td class="py-2 px-4 text-gray-800 dark:text-gray-200">
+                    Mike Johnson
+                  </td>
+                  <td class="py-2 px-4 text-gray-800 dark:text-gray-200">
+                    mike@example.com
+                  </td>
+                  <td class="py-2 px-4 text-gray-800 dark:text-gray-200">
+                    +1 456 789 1234
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
+
+      <!-- Footer -->
+      <footer
+        class="bg-white dark:bg-gray-800 shadow-lg mt-6 p-4 rounded-lg text-center"
+      >
+        <p class="text-gray-600 dark:text-gray-300">
+          &copy; 2023 Contact Manager. All rights reserved.
+        </p>
+      </footer>
     </div>
     <script>
-      console.log("profile page ");
+      console.log("profile page");
     </script>
   </body>
 </html>
