@@ -7,7 +7,7 @@ services:
     ports:
       - "3307:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: PASSWORD
+      MYSQL_ROOT_PASSWORD: SHUBHAM68
       MYSQL_DATABASE: contact_manager
 
     volumes:
@@ -22,7 +22,7 @@ services:
       PMA_HOST: mysql
       PMA_PORT: 3306
       PMA_USER: root
-      PMA_PASSWORD: PASSWORD
+      PMA_PASSWORD: SHUBHAM68
 
     depends_on:
       - mysql
@@ -36,7 +36,7 @@ services:
       MYSQL_PORT: 3306
       MYSQL_DB: contact_manager
       MYSQL_USER: root
-      MYSQL_PASSWORD: PASSWOED
+      MYSQL_PASSWORD: SHUBHAM68
       EMAIL_HOST: siddharth1977@gmail.com 
       EMAIL_POST: 587
       EMAIL_USERNAME: smtp@mailtrap.io
