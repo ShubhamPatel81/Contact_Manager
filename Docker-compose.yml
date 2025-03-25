@@ -7,7 +7,7 @@ services:
     ports:
       - "3307:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: SHUBHAM68
+      MYSQL_ROOT_PASSWORD: "PASSWORD"
       MYSQL_DATABASE: contact_manager
 
     volumes:
@@ -22,7 +22,7 @@ services:
       PMA_HOST: mysql
       PMA_PORT: 3306
       PMA_USER: root
-      PMA_PASSWORD: SHUBHAM68
+      PMA_PASSWORD: "PASSWORD"
 
     depends_on:
       - mysql
@@ -36,15 +36,15 @@ services:
       MYSQL_PORT: 3306
       MYSQL_DB: contact_manager
       MYSQL_USER: root
-      MYSQL_PASSWORD: SHUBHAM68
-      EMAIL_HOST: siddharth1977@gmail.com 
+      MYSQL_PASSWORD: "PASSWORD"
+      EMAIL_HOST: HOSTEMAIL@gmail.com 
       EMAIL_POST: 587
       EMAIL_USERNAME: smtp@mailtrap.io
-      EMAIL_PASSWORD: a6ffee024b993fef749ed64b1d00d35e
+      EMAIL_PASSWORD: "EMAIL_PASSWORD_SMTP"
       EMAIL_DOMAIN: helo@demomailtrap.co
       CLOUDINARY_API_KEY: 489764916498244
-      CLOUDINARY_SECRET_KEY: iV90k_ktIi8r6gwpFnl5Uja_m60
-      CLOUDINARY_NAME: diqvjs6zz
+      CLOUDINARY_SECRET_KEY: "CLOUDINARY_SECRET_KEY"
+      CLOUDINARY_NAME: "CLOUDINARY_NAME"
 
     ports:
       - "8082:8080"
