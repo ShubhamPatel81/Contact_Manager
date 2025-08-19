@@ -29,4 +29,20 @@ A full-stack **Spring Boot application** to manage personal and professional con
 
 ---
 
-## 📂 Project Structure
+## Features
+
+- User Registration & Login (Spring Security + JWT/OAuth2)
+
+- Email verification & secure password encryption (BCrypt)
+
+- Email service integration (SMTP/Mailtrap for testing)
+
+- Contact management (CRUD operations)
+
+- Role-based authentication (Admin/User)
+
+- Responsive UI with Spring MVC + TailwindCSS
+
+- Docker & Docker Compose support
+
+- Database integration with MySQL (JPA + Hibernate)
