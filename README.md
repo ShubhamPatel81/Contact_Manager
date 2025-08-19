@@ -14,7 +14,8 @@ The Smart Contact Manager is a full-stack web application built using Spring Boo
 - Role-based authentication (Admin/User)  
 - Responsive UI with **Spring MVC + TailwindCSS**  
 - Docker & Docker Compose support  
-- Database integration with MySQL (JPA + Hibernate)  
+- Database integration with MySQL (JPA + Hibernate)
+- You can export your data to the Excel Sheet as well
 
 ---
 
@@ -46,4 +47,5 @@ The Smart Contact Manager is a full-stack web application built using Spring Boo
 - Docker & Docker Compose support
 
 - Database integration with MySQL (JPA + Hibernate)
+
 
