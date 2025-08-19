@@ -2,11 +2,11 @@
 
 # 📒 Smart Contact Manager  
 
-A full-stack **Spring Boot application** to manage personal and professional contacts securely. It provides user authentication, role-based access, email verification, and social login with Google/GitHub.  
+The Smart Contact Manager is a full-stack web application built using Spring Boot that allows users to securely manage their personal and professional contacts. It integrates features such as user authentication, role-based access control, email verification, and contact CRUD operations, making it a complete solution for contact management. The backend is developed with Spring Boot, Spring MVC, Spring Data JPA, and Spring Security, while MySQL is used as the database. For the view layer, the application uses Spring MVC with TailwindCSS, ensuring a clean and responsive user interface.
 
 ---
 
-## 🚀 Features
+##  Features
 - User Registration & Login (Spring Security + JWT/OAuth2)  
 - Email verification & secure password encryption (BCrypt)  
 - Email service integration (SMTP/Mailtrap for testing)  
@@ -18,9 +18,9 @@ A full-stack **Spring Boot application** to manage personal and professional con
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠 Tech Stack
 - **Backend:** Spring Boot, Spring MVC, Spring Data JPA, Spring Security  
-- **Frontend (View Layer):** Spring MVC (Thymeleaf/JSP) + TailwindCSS  
+- **Frontend (View Layer):** Spring MVC (Thymeleaf) + TailwindCSS  
 - **Database:** MySQL  
 - **Authentication:** OAuth2 (Google, GitHub) & Custom Login  
 - **Email Service:** JavaMailSender, Mailtrap (for testing)  
@@ -46,3 +46,4 @@ A full-stack **Spring Boot application** to manage personal and professional con
 - Docker & Docker Compose support
 
 - Database integration with MySQL (JPA + Hibernate)
+
